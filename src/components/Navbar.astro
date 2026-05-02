@@ -1,57 +1,55 @@
 ---
-import { Icon } from 'astro-icon/components';
-
 const categories = [
-  { name: 'Alam & Pegunungan',      slug: 'alam-pegunungan',      icon: 'lucide:mountain' },
-  { name: 'Pantai & Bahari',        slug: 'pantai-bahari',        icon: 'lucide:palmtree' },
-  { name: 'Air Terjun',             slug: 'air-terjun',           icon: 'lucide:droplets' },
-  { name: 'Danau & Ranu',           slug: 'danau-ranu',           icon: 'lucide:compass' },
-  { name: 'Ekowisata & Taman',      slug: 'ekowisata-taman',      icon: 'lucide:trees' },
-  { name: 'Sejarah & Budaya',       slug: 'sejarah-budaya',       icon: 'lucide:landmark' },
-  { name: 'Religi & Ziarah',        slug: 'religi-ziarah',        icon: 'lucide:church' },
-  { name: 'Agrowisata',             slug: 'agrowisata',           icon: 'lucide:sprout' },
-  { name: 'Petualangan & Olahraga', slug: 'petualangan-olahraga', icon: 'lucide:activity' },
-  { name: 'Kuliner',                slug: 'kuliner',              icon: 'lucide:utensils' },
-  { name: 'Museum & Edukasi',       slug: 'museum-edukasi',       icon: 'lucide:library' },
-  { name: 'Budaya & Pertunjukan',   slug: 'budaya-pertunjukan',   icon: 'lucide:music' },
+  { name: 'Alam & Pegunungan',      slug: 'alam-pegunungan' },
+  { name: 'Pantai & Bahari',        slug: 'pantai-bahari' },
+  { name: 'Air Terjun',             slug: 'air-terjun' },
+  { name: 'Danau & Ranu',           slug: 'danau-ranu' },
+  { name: 'Ekowisata & Taman',      slug: 'ekowisata-taman' },
+  { name: 'Sejarah & Budaya',       slug: 'sejarah-budaya' },
+  { name: 'Religi & Ziarah',        slug: 'religi-ziarah' },
+  { name: 'Agrowisata',             slug: 'agrowisata' },
+  { name: 'Petualangan & Olahraga', slug: 'petualangan-olahraga' },
+  { name: 'Kuliner',                slug: 'kuliner' },
+  { name: 'Museum & Edukasi',       slug: 'museum-edukasi' },
+  { name: 'Budaya & Pertunjukan',   slug: 'budaya-pertunjukan' },
 ]; 
 ---
 
 <nav 
-  class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-  x-data="{ atTop: true, open: false }"
+  class="fixed top-0 left-0 w-full z-50 transition-all duration-500"
+  x-data="{ atTop: true, open: false, mobileMenu: false }"
   @scroll.window="atTop = window.pageYOffset <= 50"
-  :class="atTop ? 'bg-white text-slate-800' : 'bg-white/95 backdrop-blur-md shadow-sm text-slate-800 border-b border-gray-100'"
+  :class="atTop ? 'bg-transparent py-4' : 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 py-0'"
 >
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20 text-lg font-medium">
       
-      <a href="/" class="text-2xl tracking-tighter shrink-0 flex items-center">
-        <span class="font-display font-black text-green-800">Jatim</span>
-        <span class="font-serif italic font-medium text-slate-700 ml-0.5">Uncover</span>
+      <a href="/" class="text-2xl tracking-tighter shrink-0 flex items-center group z-50">
+        <span class="font-display font-black transition-colors duration-300" :class="atTop ? 'text-white' : 'text-green-800'">Jatim</span>
+        <span class="font-serif italic font-medium ml-0.5 transition-colors duration-300" :class="atTop ? 'text-white/90' : 'text-slate-700'">Uncover</span>
       </a>
 
-      <div class="flex items-center gap-8">
-        <a href="/" class="group relative py-2 hover:text-green-700 transition-colors">
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="/" class="group relative py-2 transition-colors duration-300" :class="atTop ? 'text-white hover:text-green-300' : 'text-slate-800 hover:text-green-700'">
           Beranda
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-700 transition-all duration-300 group-hover:w-full"></span>
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" :class="atTop ? 'bg-white' : 'bg-green-700'"></span>
         </a>
         
-        <a href="/peta" class="group relative py-2 hover:text-green-700 transition-colors">
+        <a href="/peta" class="group relative py-2 transition-colors duration-300" :class="atTop ? 'text-white hover:text-green-300' : 'text-slate-800 hover:text-green-700'">
           Destinasi
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-700 transition-all duration-300 group-hover:w-full"></span>
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" :class="atTop ? 'bg-white' : 'bg-green-700'"></span>
         </a>
 
         <div class="relative" @mouseenter="open = true" @mouseleave="open = false">
           <button
-            class="group relative flex items-center gap-1 py-2 hover:text-green-700 transition-colors focus:outline-none cursor-pointer"
-            :class="{ 'text-green-700': open }"
+            class="group relative flex items-center gap-1 py-2 transition-colors duration-300 focus:outline-none cursor-pointer"
+            :class="atTop ? 'text-white hover:text-green-300' : 'text-slate-800 hover:text-green-700'"
           >
             Jelajahi
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
-            <span class="absolute bottom-0 left-0 h-0.5 bg-green-700 transition-all duration-300 w-0 group-hover:w-full" :class="{ 'w-full': open }"></span>
+            <span class="absolute bottom-0 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full" :class="[atTop ? 'bg-white' : 'bg-green-700', open ? 'w-full' : '']"></span>
           </button>
 
           <div
@@ -62,43 +60,81 @@ const categories = [
             x-transition:leave="transition ease-in duration-150"
             x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 -translate-y-2"
-            class="fixed left-0 top-20 w-screen h-[50vh] bg-white z-40 overflow-auto border-b border-gray-200"
+            class="fixed left-0 w-screen h-[50vh] z-40 overflow-auto border-b transition-all duration-500"
+            :class="atTop ? 'top-[96px] bg-black/30 backdrop-blur-xl border-white/10 text-white' : 'top-20 bg-white border-gray-200 text-slate-800 shadow-2xl'"
             style="display: none;"
           >
             <div class="container mx-auto px-8 py-10 h-full">
-              <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-8">Kategori Wisata</p>
+              <p class="text-[10px] font-bold uppercase tracking-[0.2em] mb-8" :class="atTop ? 'text-white/40' : 'text-slate-400'">Kategori Wisata</p>
               <div class="grid grid-cols-4 gap-x-12 gap-y-6">
-                {categories.map((cat) => {
-                  const href = "/kategori/" + cat.slug;
-                  return (
-                    <a href={href} class="group flex items-center gap-4 transition-all duration-200">
-                      <div class="w-12 h-12 flex items-center justify-center rounded-2xl">
-                        <Icon 
-                          name={cat.icon} 
-                          class="w-6 h-6 text-slate-400 group-hover:text-green-700 transition-colors shrink-0" 
-                        />
-                      </div>
-                      <div class="flex flex-col">
-                        <span class="relative font-serif italic text-lg font-medium text-slate-700 group-hover:text-green-800 transition-colors py-1">
-                          {cat.name}
-                          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-700 transition-all duration-300 group-hover:w-full"></span>
-                        </span>
-                        <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 group-hover:text-green-600 transition-colors">
-                          Lihat Destinasi
-                        </span>
-                      </div>
-                    </a>
-                  );
-                })}
+                {categories.map((cat) => (
+                  <a href={`/kategori/${cat.slug}`} class="group flex flex-col transition-all duration-200">
+                    <span class="relative font-serif italic text-lg font-medium transition-colors py-1" :class="atTop ? 'text-white/90 group-hover:text-white' : 'text-slate-700 group-hover:text-green-800'">
+                      {cat.name}
+                      <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" :class="atTop ? 'bg-white' : 'bg-green-700'"></span>
+                    </span>
+                    <span class="text-[10px] uppercase font-medium tracking-widest transition-colors" :class="atTop ? 'text-white/40 group-hover:text-white/70' : 'text-slate-400 group-hover:text-green-600'">
+                      Lihat Destinasi
+                    </span>
+                  </a>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
-        <a href="/tentang" class="group relative py-2 hover:text-green-700 transition-colors">
+        <a href="/tentang" class="group relative py-2 transition-colors duration-300" :class="atTop ? 'text-white hover:text-green-300' : 'text-slate-800 hover:text-green-700'">
           Tentang
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-700 transition-all duration-300 group-hover:w-full"></span>
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" :class="atTop ? 'bg-white' : 'bg-green-700'"></span>
         </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="lg:hidden z-50">
+        <button 
+          @click="mobileMenu = !mobileMenu"
+          class="p-2 transition-colors duration-300"
+          :class="atTop && !mobileMenu ? 'text-white' : 'text-slate-800'"
+        >
+          <svg x-show="!mobileMenu" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg x-show="mobileMenu" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display: none;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div 
+    x-show="mobileMenu"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 translate-x-full"
+    x-transition:enter-end="opacity-100 translate-x-0"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100 translate-x-0"
+    x-transition:leave-end="opacity-0 translate-x-full"
+    class="fixed inset-0 bg-white z-40 lg:hidden overflow-y-auto"
+    style="display: none;"
+  >
+    <div class="container mx-auto px-6 py-24">
+      <div class="flex flex-col gap-8">
+        <a href="/" class="text-4xl font-display font-black text-green-800 border-b border-gray-100 pb-4">Beranda</a>
+        <a href="/peta" class="text-4xl font-display font-black text-green-800 border-b border-gray-100 pb-4">Destinasi</a>
+        
+        <div class="flex flex-col gap-4">
+          <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Jelajahi Kategori</p>
+          <div class="grid grid-cols-1 gap-4">
+            {categories.map((cat) => (
+              <a href={`/kategori/${cat.slug}`} class="text-2xl font-serif italic text-slate-700 hover:text-green-700 transition-colors">
+                {cat.name}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <a href="/tentang" class="text-4xl font-display font-black text-green-800 border-b border-gray-100 pb-4">Tentang</a>
       </div>
     </div>
   </div>
