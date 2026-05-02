@@ -72,15 +72,16 @@ const categories = [
                   const href = "/kategori/" + cat.slug;
                   return (
                     <a href={href} class="group flex items-center gap-4 transition-all duration-200">
-                      <div class="w-12 h-12 flex items-center justify-cente">
+                      <div class="w-12 h-12 flex items-center justify-center rounded-2xl">
                         <Icon 
                           name={cat.icon} 
                           class="w-6 h-6 text-slate-400 group-hover:text-green-700 transition-colors shrink-0" 
                         />
                       </div>
                       <div class="flex flex-col">
-                        <span class="font-serif italic text-lg font-medium text-slate-700 group-hover:text-green-800 transition-colors">
+                        <span class="relative font-serif italic text-lg font-medium text-slate-700 group-hover:text-green-800 transition-colors py-1">
                           {cat.name}
+                          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-700 transition-all duration-300 group-hover:w-full"></span>
                         </span>
                         <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 group-hover:text-green-600 transition-colors">
                           Lihat Destinasi
