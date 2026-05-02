@@ -17,9 +17,9 @@ const categories = [
 ];
 
 const quickLinks = [
-  { name: 'Home',        href: '/' },
-  { name: 'Destination', href: '/peta' },
-  { name: 'About',       href: '/tentang' },
+  { name: 'Beranda',        href: '/' },
+  { name: 'Destinasi', href: '/peta' },
+  { name: 'Tentang',       href: '/tentang' },
 ];
 ---
 
@@ -28,23 +28,14 @@ const quickLinks = [
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
 
       <div class="lg:col-span-1 flex flex-col gap-4">
-        <a href="/" class="text-xl font-semibold tracking-tight hover:text-green-300 transition-colors">
-          JatimWander
+        <a href="/" class="text-xl tracking-tight flex items-center group transition-colors">
+          <span class="font-display font-bold text-green-400">Jatim</span>
+          <span class="font-serif italic font-medium text-white ml-0.5">Uncover</span>
         </a>
         <p class="text-sm text-green-200/70 leading-relaxed">
-          Jelajahi keindahan Jawa Timur — dari puncak gunung hingga tepi laut, dari warung legendaris hingga pura bersejarah.
+          Satu provinsi, seribu cerita dari puncak gunung hingga tepi laut, dari warung legendaris hingga pura bersejarah. Temukan pesona Jawa Timur yang belum pernah kamu bayangkan sebelumnya.
         </p>
-        <div class="flex items-center gap-3 mt-1">
-          <a href="#" aria-label="Instagram" class="text-green-200/50 hover:text-green-300 transition-colors">
-            <Icon name="lucide:instagram" class="w-5 h-5" />
-          </a>
-          <a href="#" aria-label="YouTube" class="text-green-200/50 hover:text-green-300 transition-colors">
-            <Icon name="lucide:youtube" class="w-5 h-5" />
-          </a>
-          <a href="#" aria-label="TikTok" class="text-green-200/50 hover:text-green-300 transition-colors">
-            <Icon name="lucide:music-2" class="w-5 h-5" />
-          </a>
-        </div>
+
       </div>
 
       <div class="flex flex-col gap-4">
@@ -52,7 +43,7 @@ const quickLinks = [
         <ul class="flex flex-col gap-2">
           {quickLinks.map((link) => (
             <li>
-              <a href={link.href} class="text-sm font-medium text-green-100/70 hover:text-green-300 transition-colors">
+              <a href={link.href} class="text-sm font-medium text-white hover:text-green-300 transition-colors">
                 {link.name}
               </a>
             </li>
@@ -66,7 +57,7 @@ const quickLinks = [
           {categories.map((cat) => (
             <a
               href={`/kategori/${cat.slug}`}
-              class="text-sm text-green-100/70 hover:text-green-300 transition-colors py-1"
+              class="text-sm text-white hover:text-green-300 transition-colors py-1"
             >
               {cat.name}
             </a>
@@ -80,7 +71,7 @@ const quickLinks = [
   <div class="border-t border-green-900">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
       <p class="text-xs text-green-200/40">
-        &copy; {new Date().getFullYear()} JatimWander. All rights reserved.
+        &copy; {new Date().getFullYear()} JatimUncover. All rights reserved.
       </p>
     </div>
   </div>

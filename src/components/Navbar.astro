@@ -21,60 +21,84 @@ const categories = [
   class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
   x-data="{ atTop: true, open: false }"
   @scroll.window="atTop = window.pageYOffset <= 50"
-  :class="atTop ? 'bg-white text-slate-800' : 'bg-white/90 backdrop-blur-md shadow-sm text-slate-800 border-b border-gray-100'"
+  :class="atTop ? 'bg-white text-slate-800' : 'bg-white/95 backdrop-blur-md shadow-sm text-slate-800 border-b border-gray-100'"
 >
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-center gap-10 h-20 text-lg font-semibold">
+    <div class="flex items-center justify-between h-20 text-lg font-medium">
       
-      <a href="/" class="hover:text-green-700 transition-colors">Home</a>
-      <a href="/peta" class="hover:text-green-700 transition-colors">Destination</a>
+      <a href="/" class="text-2xl tracking-tighter shrink-0 flex items-center">
+        <span class="font-display font-black text-green-800">Jatim</span>
+        <span class="font-serif italic font-medium text-slate-700 ml-0.5">Uncover</span>
+      </a>
 
+      <div class="flex items-center gap-8">
+        <a href="/" class="group relative py-2 hover:text-green-700 transition-colors">
+          Beranda
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-700 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        
+        <a href="/peta" class="group relative py-2 hover:text-green-700 transition-colors">
+          Destinasi
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-700 transition-all duration-300 group-hover:w-full"></span>
+        </a>
 
-      <div class="relative" @mouseenter="open = true" @mouseleave="open = false">
-        <button
-          class="flex items-center gap-1 hover:text-green-700 transition-colors focus:outline-none cursor-pointer"
-          :class="{ 'text-green-700': open }"
-        >
-          Explore
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
+        <div class="relative" @mouseenter="open = true" @mouseleave="open = false">
+          <button
+            class="group relative flex items-center gap-1 py-2 hover:text-green-700 transition-colors focus:outline-none cursor-pointer"
+            :class="{ 'text-green-700': open }"
+          >
+            Jelajahi
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+            <span class="absolute bottom-0 left-0 h-0.5 bg-green-700 transition-all duration-300 w-0 group-hover:w-full" :class="{ 'w-full': open }"></span>
+          </button>
 
-        <div
-          x-show="open"
-          x-transition:enter="transition ease-out duration-250"
-          x-transition:enter-start="opacity-0 -translate-y-2"
-          x-transition:enter-end="opacity-100 translate-y-0"
-          x-transition:leave="transition ease-in duration-150"
-          x-transition:leave-start="opacity-100 translate-y-0"
-          x-transition:leave-end="opacity-0 -translate-y-2"
-          class="fixed left-0 top-20 w-screen h-[50vh] bg-white z-40 overflow-auto border-b border-gray-200"
-        >
-          <div class="container mx-auto px-8 py-8 h-full">
-            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Explore</p>
-            <div class="grid grid-cols-4 gap-x-6 gap-y-3">
-              {categories.map((cat) => {
-                const href = "/kategori/" + cat.slug;
-                return (
-                  <a href={href} class="group flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-50 transition-all duration-200">
-                    <Icon 
-                      name={cat.icon} 
-                      class="w-5 h-5 text-slate-400 group-hover:text-green-700 transition-colors shrink-0" 
-                    />
-                    <span class="text-sm font-medium text-slate-600 group-hover:text-green-700 transition-colors">
-                      {cat.name}
-                    </span>
-                  </a>
-                );
-              })}
+          <div
+            x-show="open"
+            x-transition:enter="transition ease-out duration-250"
+            x-transition:enter-start="opacity-0 -translate-y-2"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-2"
+            class="fixed left-0 top-20 w-screen h-[50vh] bg-white z-40 overflow-auto border-b border-gray-200"
+            style="display: none;"
+          >
+            <div class="container mx-auto px-8 py-10 h-full">
+              <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-8">Kategori Wisata</p>
+              <div class="grid grid-cols-4 gap-x-12 gap-y-6">
+                {categories.map((cat) => {
+                  const href = "/kategori/" + cat.slug;
+                  return (
+                    <a href={href} class="group flex items-center gap-4 transition-all duration-200">
+                      <div class="w-12 h-12 flex items-center justify-cente">
+                        <Icon 
+                          name={cat.icon} 
+                          class="w-6 h-6 text-slate-400 group-hover:text-green-700 transition-colors shrink-0" 
+                        />
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="font-serif italic text-lg font-medium text-slate-700 group-hover:text-green-800 transition-colors">
+                          {cat.name}
+                        </span>
+                        <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 group-hover:text-green-600 transition-colors">
+                          Lihat Destinasi
+                        </span>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
+
+        <a href="/tentang" class="group relative py-2 hover:text-green-700 transition-colors">
+          Tentang
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-700 transition-all duration-300 group-hover:w-full"></span>
+        </a>
       </div>
-
-      <a href="/tentang" class="hover:text-green-700 transition-colors">About</a>
-
     </div>
   </div>
 </nav>
