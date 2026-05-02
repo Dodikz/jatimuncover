@@ -1,0 +1,87 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const categories = [
+  { name: 'Alam & Pegunungan',      slug: 'alam-pegunungan' },
+  { name: 'Pantai & Bahari',        slug: 'pantai-bahari' },
+  { name: 'Air Terjun',             slug: 'air-terjun' },
+  { name: 'Danau & Ranu',           slug: 'danau-ranu' },
+  { name: 'Ekowisata & Taman',      slug: 'ekowisata-taman' },
+  { name: 'Sejarah & Budaya',       slug: 'sejarah-budaya' },
+  { name: 'Religi & Ziarah',        slug: 'religi-ziarah' },
+  { name: 'Agrowisata',             slug: 'agrowisata' },
+  { name: 'Petualangan & Olahraga', slug: 'petualangan-olahraga' },
+  { name: 'Kuliner',                slug: 'kuliner' },
+  { name: 'Museum & Edukasi',       slug: 'museum-edukasi' },
+  { name: 'Budaya & Pertunjukan',   slug: 'budaya-pertunjukan' },
+];
+
+const quickLinks = [
+  { name: 'Home',        href: '/' },
+  { name: 'Destination', href: '/peta' },
+  { name: 'About',       href: '/tentang' },
+];
+---
+
+<footer class="w-full bg-green-950 text-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+
+      <div class="lg:col-span-1 flex flex-col gap-4">
+        <a href="/" class="text-xl font-semibold tracking-tight hover:text-green-300 transition-colors">
+          JatimWander
+        </a>
+        <p class="text-sm text-green-200/70 leading-relaxed">
+          Jelajahi keindahan Jawa Timur — dari puncak gunung hingga tepi laut, dari warung legendaris hingga pura bersejarah.
+        </p>
+        <div class="flex items-center gap-3 mt-1">
+          <a href="#" aria-label="Instagram" class="text-green-200/50 hover:text-green-300 transition-colors">
+            <Icon name="lucide:instagram" class="w-5 h-5" />
+          </a>
+          <a href="#" aria-label="YouTube" class="text-green-200/50 hover:text-green-300 transition-colors">
+            <Icon name="lucide:youtube" class="w-5 h-5" />
+          </a>
+          <a href="#" aria-label="TikTok" class="text-green-200/50 hover:text-green-300 transition-colors">
+            <Icon name="lucide:music-2" class="w-5 h-5" />
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <p class="text-xs font-bold uppercase tracking-widest text-green-200/40">Menu</p>
+        <ul class="flex flex-col gap-2">
+          {quickLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm font-medium text-green-100/70 hover:text-green-300 transition-colors">
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2 flex flex-col gap-4">
+        <p class="text-xs font-bold uppercase tracking-widest text-green-200/40">Explore</p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2">
+          {categories.map((cat) => (
+            <a
+              href={`/kategori/${cat.slug}`}
+              class="text-sm text-green-100/70 hover:text-green-300 transition-colors py-1"
+            >
+              {cat.name}
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="border-t border-green-900">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+      <p class="text-xs text-green-200/40">
+        &copy; {new Date().getFullYear()} JatimWander. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,80 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const categories = [
+  { name: 'Alam & Pegunungan',      slug: 'alam-pegunungan',      icon: 'lucide:mountain' },
+  { name: 'Pantai & Bahari',        slug: 'pantai-bahari',        icon: 'lucide:palmtree' },
+  { name: 'Air Terjun',             slug: 'air-terjun',           icon: 'lucide:droplets' },
+  { name: 'Danau & Ranu',           slug: 'danau-ranu',           icon: 'lucide:compass' },
+  { name: 'Ekowisata & Taman',      slug: 'ekowisata-taman',      icon: 'lucide:trees' },
+  { name: 'Sejarah & Budaya',       slug: 'sejarah-budaya',       icon: 'lucide:landmark' },
+  { name: 'Religi & Ziarah',        slug: 'religi-ziarah',        icon: 'lucide:church' },
+  { name: 'Agrowisata',             slug: 'agrowisata',           icon: 'lucide:sprout' },
+  { name: 'Petualangan & Olahraga', slug: 'petualangan-olahraga', icon: 'lucide:activity' },
+  { name: 'Kuliner',                slug: 'kuliner',              icon: 'lucide:utensils' },
+  { name: 'Museum & Edukasi',       slug: 'museum-edukasi',       icon: 'lucide:library' },
+  { name: 'Budaya & Pertunjukan',   slug: 'budaya-pertunjukan',   icon: 'lucide:music' },
+]; 
+---
+
+<nav 
+  class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+  x-data="{ atTop: true, open: false }"
+  @scroll.window="atTop = window.pageYOffset <= 50"
+  :class="atTop ? 'bg-white text-slate-800' : 'bg-white/90 backdrop-blur-md shadow-sm text-slate-800 border-b border-gray-100'"
+>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-center gap-10 h-20 text-lg font-semibold">
+      
+      <a href="/" class="hover:text-green-700 transition-colors">Home</a>
+      <a href="/peta" class="hover:text-green-700 transition-colors">Destination</a>
+
+
+      <div class="relative" @mouseenter="open = true" @mouseleave="open = false">
+        <button
+          class="flex items-center gap-1 hover:text-green-700 transition-colors focus:outline-none cursor-pointer"
+          :class="{ 'text-green-700': open }"
+        >
+          Explore
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <div
+          x-show="open"
+          x-transition:enter="transition ease-out duration-250"
+          x-transition:enter-start="opacity-0 -translate-y-2"
+          x-transition:enter-end="opacity-100 translate-y-0"
+          x-transition:leave="transition ease-in duration-150"
+          x-transition:leave-start="opacity-100 translate-y-0"
+          x-transition:leave-end="opacity-0 -translate-y-2"
+          class="fixed left-0 top-20 w-screen h-[50vh] bg-white z-40 overflow-auto border-b border-gray-200"
+        >
+          <div class="container mx-auto px-8 py-8 h-full">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Explore</p>
+            <div class="grid grid-cols-4 gap-x-6 gap-y-3">
+              {categories.map((cat) => {
+                const href = "/kategori/" + cat.slug;
+                return (
+                  <a href={href} class="group flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-50 transition-all duration-200">
+                    <Icon 
+                      name={cat.icon} 
+                      class="w-5 h-5 text-slate-400 group-hover:text-green-700 transition-colors shrink-0" 
+                    />
+                    <span class="text-sm font-medium text-slate-600 group-hover:text-green-700 transition-colors">
+                      {cat.name}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="/tentang" class="hover:text-green-700 transition-colors">About</a>
+
+    </div>
+  </div>
+</nav>
