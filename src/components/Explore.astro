@@ -1,0 +1,58 @@
+---
+import CategoryCard from './CategoryCard.astro';
+
+const exploreData = [
+  {
+    name: "Alam & Pegunungan",
+    count: "45",
+    image: "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    name: "Pantai & Bahari",
+    count: "32",
+    image: "https://images.unsplash.com/photo-1542317148-8b4bdccb33ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    name: "Air Terjun",
+    count: "28",
+    image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    name: "Sejarah & Budaya",
+    count: "56",
+    image: "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    name: "Kuliner",
+    count: "120",
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  }
+];
+
+const totalCategories = 12;
+const displayedCategories = exploreData.length;
+const remainingCategories = totalCategories - displayedCategories;
+---
+
+<section class="relative w-full py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="container mx-auto">
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-800 mb-3">Kategori Pilihan</h2>
+        <p class="text-lg text-slate-600 mb-10">Temukan destinasi berdasarkan suasana dan aktivitas yang Anda cari</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {exploreData.map((item) => (
+                <CategoryCard 
+                    name={item.name}
+                    count={item.count}
+                    image={item.image}
+                />
+            ))}
+
+            <CategoryCard 
+                name={`+${remainingCategories} Kategori`}
+                image="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                isOthers={true}
+            />
+        </div>
+    </div>
+</section>
