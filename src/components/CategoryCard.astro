@@ -15,7 +15,7 @@ const { name, count, image, isOthers = false } = Astro.props;
         alt={name} 
         class={`absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ${isOthers ? 'blur-[1px] group-hover:blur-0' : ''}`} 
     />
-    <div class={`absolute inset-0 bg-gradient-to-t ${isOthers ? 'from-black/90 via-black/20 to-black/70 group-hover:from-black/95' : 'from-black/80 via-black/20 to-black/60 group-hover:from-black/90 group-hover:via-black/40 group-hover:to-black/70'} transition-all duration-500`}></div>
+    <div class={`absolute inset-0 ${isOthers ? 'bg-black/60 group-hover:bg-black/70' : 'bg-black/40 group-hover:bg-black/55'} transition-all duration-500`}></div>
     <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
         <h3 class="font-display font-bold text-[1.5rem] md:text-[1.8rem] text-white leading-tight drop-shadow-lg group-hover:scale-105 transition-transform duration-500">
             {name}

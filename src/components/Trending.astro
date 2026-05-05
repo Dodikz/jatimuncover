@@ -1,5 +1,7 @@
 ---
 import TrendingCard from './TrendingCard.astro';
+import '../styles/trending.css';
+
 
 const trendingData = [
   {
@@ -8,7 +10,8 @@ const trendingData = [
     rating: "4.0",
     ratingText: "Good",
     price: "Rp 450.000",
-    image: "https://images.unsplash.com/photo-1542317148-8b4bdccb33ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1542317148-8b4bdccb33ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Pantai"
   },
   {
     title: "Gunung Bromo",
@@ -16,7 +19,8 @@ const trendingData = [
     rating: "4.8",
     ratingText: "Excellent",
     price: "Rp 450.000",
-    image: "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Gunung"
   },
   {
     title: "Pantai Klayar",
@@ -24,34 +28,73 @@ const trendingData = [
     rating: "4.5",
     ratingText: "Very Good",
     price: "Rp 450.000",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Pantai"
   },
   {
-    title: "Danau Taman Hidup",
-    location: "Probolinggo, Jawa Timur",
-    rating: "4.2",
-    ratingText: "Good",
+    title: "Air Terjun Tumpak Sewu",
+    location: "Lumajang, Jawa Timur",
+    rating: "4.9",
+    ratingText: "Perfect",
     price: "Rp 450.000",
-    image: "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Air Terjun"
   }
 ];
+
+const tabs = ['Semua', 'Pantai', 'Gunung', 'Air Terjun'];
 ---
 
 <section class='relative w-full py-16 px-4 sm:px-6 lg:px-8 bg-white'>
     <div class="container mx-auto">
-        <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-800 mb-10">Wisata Populer</h2>
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div class="max-w-md">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-800 mb-3">Wisata Populer</h2>
+            </div>
+            
+            <div class="flex items-center gap-6 overflow-x-auto pb-2 shrink-0 no-scrollbar">
+                {tabs.map((tab, i) => (
+                    <button 
+                        data-tab={tab}
+                        class:list={[
+                            "tab-btn text-[13px] font-bold uppercase tracking-[0.2em] whitespace-nowrap transition-all duration-300 relative group pb-2",
+                            i === 0 ? "text-green-800" : "text-slate-400 hover:text-slate-600"
+                        ]}
+                    >
+                        {tab}
+                        <span 
+                            class="tab-indicator absolute bottom-0 left-0 h-[2.5px] bg-green-700 transition-all duration-300"
+                            style={i === 0 ? "width: 2rem" : "width: 0"}
+                        ></span>
+                    </button>
+                ))}
+                <a href="/destinasi" class="text-[13px] font-bold uppercase tracking-[0.2em] text-green-700 whitespace-nowrap hover:text-green-800 pb-2 flex items-center gap-1 group ml-4">
+                    Lihat Semua
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div id="trending-grid" class="flex flex-wrap -mx-3 relative">
             {trendingData.map((item) => (
-                <TrendingCard 
-                    title={item.title}
-                    location={item.location}
-                    rating={item.rating}
-                    ratingText={item.ratingText}
-                    price={item.price}
-                    image={item.image}
-                />
+                <div 
+                    class="trending-card w-full sm:w-1/2 lg:w-1/4 px-3 mb-6"
+                    data-category={item.category}
+                >
+                    <TrendingCard 
+                        title={item.title}
+                        location={item.location}
+                        rating={item.rating}
+                        ratingText={item.ratingText}
+                        price={item.price}
+                        image={item.image}
+                    />
+                </div>
             ))}
         </div>
     </div>
 </section>
+
+<script src="../scripts/trending.js"></script>
